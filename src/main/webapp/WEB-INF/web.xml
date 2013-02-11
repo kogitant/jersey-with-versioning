@@ -32,7 +32,7 @@
 		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
 	    <init-param>
 	      <param-name>com.sun.jersey.config.property.packages</param-name>
-	      <param-value>com.fasterxml.jackson.jaxrs.json; com.ricardoborillo.test.services.rest.v1; com.ricardoborillo.test.services.rest.v2</param-value>
+	      <param-value>com.fasterxml.jackson.jaxrs.json; com.ricardoborillo.test.services.common; com.ricardoborillo.test.services.rest.v1; com.ricardoborillo.test.services.rest.v2</param-value>
 	    </init-param>
 		<init-param>
 			<param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>

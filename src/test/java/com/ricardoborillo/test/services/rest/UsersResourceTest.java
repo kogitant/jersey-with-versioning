@@ -27,7 +27,7 @@ public class UsersResourceTest extends JerseyTest
 
     public UsersResourceTest()
     {
-        super(new WebAppDescriptor.Builder("com.ricardoborillo.test.services.rest.v2", "com.ricardoborillo.test.services.rest.v1")
+        super(new WebAppDescriptor.Builder(new String[]{"com.ricardoborillo.test.services.rest.v1", "com.ricardoborillo.test.services.rest.v2"})
                 .contextParam("contextConfigLocation", "classpath:applicationContext.xml")
                 .contextParam("log4jConfigLocation", "src/main/webapp/WEB-INF/log4j.properties")
                 .contextParam("webAppRootKey", "template-jersey-spring-jpa.root")
@@ -45,17 +45,6 @@ public class UsersResourceTest extends JerseyTest
         return new GrizzlyWebTestContainerFactory();
     }
 
-    @Test
-    public void current_users() throws FileNotFoundException, IOException
-    {
-        ClientResponse response = resource.path("/current/users").accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-        RestResponse serviceResponse = response.getEntity(RestResponse.class);
-
-        Assert.assertEquals(Status.OK.getStatusCode(), response.getStatus());
-        Assert.assertTrue(serviceResponse.getSuccess());
-        Assert.assertTrue(serviceResponse.getData().isEmpty());
-    }
-    
     @Test
     public void v1_users() throws FileNotFoundException, IOException
     {
