@@ -1,5 +1,7 @@
 # [Template project] : Jersey, Spring, JPA/QueryDSL and ExtJS 4.1 MVC #
 
+Forked from https://github.com/borillo/template-jersey-spring-jpa
+
 Components used:
 
 * [Spring Framework 3.1.2.RELEASE](http://www.springsource.org/): Dependency injection and configuration management
@@ -10,3 +12,9 @@ Components used:
 * [C3P0 0.9.1.3](http://sourceforge.net/projects/c3p0/): Connection pooling
 * [QueryDSL 2.7.1](http://www.querydsl.com/): DSL support for JPA
 * [Sencha ExtJS 4.1.0](http://www.sencha.com/products/extjs/): JavaScript Rich client UI with REST integration
+
+
+# Additions #
+
+* Versioning support
+* Showcase of client (ExtJS html pages) using different versions of API
