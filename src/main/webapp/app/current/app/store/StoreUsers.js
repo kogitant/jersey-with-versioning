@@ -9,7 +9,7 @@ Ext.define('TEST.store.StoreUsers',
     proxy :
     {
         type : 'rest',
-        url : '/template-jersey-spring-jpa/rest/users',
+        url : '/template-jersey-spring-jpa/rest/current/users',
 
         reader :
         {

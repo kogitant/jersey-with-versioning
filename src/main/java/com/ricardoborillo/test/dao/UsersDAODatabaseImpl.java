@@ -14,7 +14,6 @@ import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.jpa.impl.JPAUpdateClause;
 import com.ricardoborillo.test.db.QUserDTO;
 import com.ricardoborillo.test.db.UserDTO;
-import com.ricardoborillo.test.model.User;
 
 @Repository
 public class UsersDAODatabaseImpl implements UsersDAO
@@ -25,20 +24,20 @@ public class UsersDAODatabaseImpl implements UsersDAO
     private QUserDTO qUserDTO = QUserDTO.userDTO;
 
     @Override
-    public List<User> getUsers()
+    public List<UserDTO> getUsers()
     {
         JPAQuery query = new JPAQuery(entityManager);
-
-        List<User> users = new ArrayList<User>();
-
-        for (UserDTO userDB : query.from(qUserDTO).list(qUserDTO))
-        {
-            users.add(new User(userDB));
-        }
-
-        return users;
+        return query.from(qUserDTO).list(qUserDTO);
     }
-
+    
+    @Override
+    @Transactional
+    public UserDTO find(Integer id)
+    {
+        JPAQuery query = new JPAQuery(entityManager);
+        return query.from(qUserDTO).where(qUserDTO.id.eq(id)).list(qUserDTO).get(0);
+    }
+    
     @Override
     @Transactional
     public void removeUser(Integer id)
@@ -49,20 +48,15 @@ public class UsersDAODatabaseImpl implements UsersDAO
 
     @Override
     @Transactional
-    public User addUser(User user)
+    public UserDTO addUser(UserDTO userDTO)
     {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setName(user.getName());
-
         entityManager.persist(userDTO);
-
-        user.setId(userDTO.getId());
-        return user;
+        return userDTO;
     }
 
     @Override
     @Transactional
-    public void updateUser(User user)
+    public void updateUser(UserDTO user)
     {
         JPAUpdateClause update = new JPAUpdateClause(entityManager, qUserDTO);
         update.set(qUserDTO.name, user.getName()).where(qUserDTO.id.eq(user.getId())).execute();

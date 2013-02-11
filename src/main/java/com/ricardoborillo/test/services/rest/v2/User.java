@@ -1,4 +1,4 @@
-package com.ricardoborillo.test.model;
+package com.ricardoborillo.test.services.rest.v2;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,6 +9,7 @@ public class User
 {
     private Integer id;
     private String name;
+    private String address;
 
     public User()
     {
@@ -18,6 +19,7 @@ public class User
     {
         this.id = usuarioDTO.getId();
         this.name = usuarioDTO.getName();
+        this.address = usuarioDTO.getAddress();
     }
 
     public Integer getId()
@@ -39,4 +41,14 @@ public class User
     {
         this.name = name;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
+    
 }

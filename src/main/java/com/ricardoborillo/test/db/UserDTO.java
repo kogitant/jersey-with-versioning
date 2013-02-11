@@ -18,6 +18,8 @@ public class UserDTO implements Serializable
     private Integer id;
 
     private String name;
+    
+    private String address;
 
     public UserDTO()
     {
@@ -42,4 +44,14 @@ public class UserDTO implements Serializable
     {
         this.name = name;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
+    
 }

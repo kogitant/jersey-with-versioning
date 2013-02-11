@@ -2,15 +2,17 @@ package com.ricardoborillo.test.dao;
 
 import java.util.List;
 
-import com.ricardoborillo.test.model.User;
+import com.ricardoborillo.test.db.UserDTO;
 
 public interface UsersDAO
 {
-    List<User> getUsers();
+    List<UserDTO> getUsers();
 
     void removeUser(Integer id);
 
-    User addUser(User user);
+    UserDTO addUser(UserDTO user);
 
-    void updateUser(User user);
+    void updateUser(UserDTO user);
+
+    UserDTO find(Integer id);
 }

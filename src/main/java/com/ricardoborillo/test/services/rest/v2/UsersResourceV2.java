@@ -1,4 +1,4 @@
-package com.ricardoborillo.test.services.rest;
+package com.ricardoborillo.test.services.rest.v2;
 
 import java.util.Collections;
 
@@ -12,12 +12,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.ricardoborillo.test.model.User;
+import com.ricardoborillo.test.db.UserDTO;
 import com.ricardoborillo.test.services.UsersService;
+import com.ricardoborillo.test.services.common.RestResponse;
 import com.sun.jersey.api.core.InjectParam;
 
-@Path("users")
-public class UsersResource
+@Path("/v2/users")
+public class UsersResourceV2
 {
     @InjectParam
     private UsersService usersService;
@@ -26,7 +27,7 @@ public class UsersResource
     @Produces(MediaType.APPLICATION_JSON)
     public RestResponse getAll()
     {
-        return new RestResponse(true, usersService.getUsuarios());
+        return new RestResponse(2, true, UserConverter.convert(usersService.getUsuarios()));
     }
     
     @DELETE
@@ -35,7 +36,7 @@ public class UsersResource
     public RestResponse remove(@PathParam("id") String id)
     {
         usersService.removeUser(Integer.parseInt(id));
-        return new RestResponse(true);
+        return new RestResponse(2, true);
     }
     
     @POST
@@ -43,8 +44,8 @@ public class UsersResource
     @Produces(MediaType.APPLICATION_JSON)
     public RestResponse add(User user)
     {
-        User newUser = usersService.addUser(user);
-        return new RestResponse(true, Collections.singletonList(newUser));
+        UserDTO newUser = usersService.addUser(UserConverter.convert(user));
+        return new RestResponse(2, true, Collections.singletonList(UserConverter.convert(newUser)));
     }
     
     @PUT
@@ -53,7 +54,7 @@ public class UsersResource
     @Produces(MediaType.APPLICATION_JSON)
     public RestResponse update(User user)
     {
-        usersService.updateUser(user);
-        return new RestResponse(true, Collections.singletonList(user));
+        usersService.updateUser(UserConverter.convert(user));
+        return new RestResponse(2, true, Collections.singletonList(UserConverter.convert(user)));
     }    
 }

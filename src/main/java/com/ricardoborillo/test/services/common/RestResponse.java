@@ -1,4 +1,4 @@
-package com.ricardoborillo.test.services.rest;
+package com.ricardoborillo.test.services.common;
 
 import java.util.Collections;
 import java.util.List;
@@ -8,21 +8,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class RestResponse
 {
+    private int version;
     private Boolean success;
     private List<?> data;
     
     public RestResponse()
     {
-        this(true, Collections.EMPTY_LIST);
+        this(0, true, Collections.EMPTY_LIST);
     }
     
-    public RestResponse(boolean success)
+    public RestResponse(int version, boolean success)
     {
-        this(success, Collections.EMPTY_LIST);
+        this(version, success, Collections.EMPTY_LIST);
     }
     
-    public RestResponse(boolean success, List<?> data)
+    public RestResponse(int version, boolean success, List<?> data)
     {
+        this.version = version;
         this.success = success;
         this.data = data;
     }
@@ -46,4 +48,14 @@ public class RestResponse
     {
         this.data = data;
     }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+    
+    
 }
